@@ -1,12 +1,27 @@
 import React from 'react'
-import Navbar from '../components/Navbar/Navbar'
+import fetch from 'isomorphic-unfetch'
+import Layout from '@components/Layout/layout'
+import KawaiiHeader from '@components/KawaiiHeader/KawaiiHeader'
+import ProductList from '@components/ProductList/ProductList'
 
-const HomePage = () => {
+export const getServerSideProps = async () => {
+  const response = await fetch('https://platzi-avocado-nextjs-tau.vercel.app/api/avogit ')
+  const { data: productList }: TAPIAvoResponse = await response.json()
+      
+  return {
+    props: {
+      productList,
+    },
+  }
+}
+
+const HomePage = ({ productList }: {productList: TProduct[]}) => {
+
   return (
-    <div>
-      <Navbar />
-      <div>Platzi and Next.js!</div>
-    </div>
+    <Layout>
+      <KawaiiHeader />
+      <ProductList products={productList} />
+    </Layout>
   )
 }
 
