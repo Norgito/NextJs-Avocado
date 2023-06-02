@@ -5,7 +5,7 @@ import KawaiiHeader from '@components/KawaiiHeader/KawaiiHeader'
 import ProductList from '@components/ProductList/ProductList'
 
 export const getServerSideProps = async () => {
-  const response = await fetch('https://platzi-avocado-nextjs-tau.vercel.app/api/avogit ')
+  const response = await fetch('https://nextjs-palta.vercel.app/api/avo')
   const { data: productList }: TAPIAvoResponse = await response.json()
       
   return {
